@@ -1,26 +1,164 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #0c0c0c;
+  --foreground: #fafafa;
+  --muted: #a1a1aa;
+  --accent-amber: #f59e0b;
+  --accent-red: #ff6b6b;
+  --card-bg: #161616;
+  --card-bg-hover: #1e1e1e;
+  --border: #2a2a2a;
+  --border-hover: #3a3a3a;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-accent-amber: var(--accent-amber);
+  --color-accent-red: var(--accent-red);
+  --color-card-bg: var(--card-bg);
+  --color-card-bg-hover: var(--card-bg-hover);
+  --color-border: var(--border);
+  --color-border-hover: var(--border-hover);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+}
+
+::selection {
+  background: rgba(245, 158, 11, 0.4);
+  color: #fafafa;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #0c0c0c; }
+::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #555; }
+
+/* Focus ring */
+*:focus-visible {
+  outline: 2px solid var(--accent-amber);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ─── Font families (direct CSS, not via Tailwind theme) ─── */
+.font-serif-display {
+  font-family: var(--font-serif), Georgia, "Times New Roman", serif;
+}
+.font-hand {
+  font-family: var(--font-caveat), "Comic Sans MS", cursive;
+}
+.text-display {
+  font-family: var(--font-serif), Georgia, serif;
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+}
+
+/* ─── Stroke / outline text ─── */
+.text-stroke {
+  -webkit-text-stroke: 1.5px var(--accent-amber);
+  -webkit-text-fill-color: transparent;
+}
+.text-stroke-thin {
+  -webkit-text-stroke: 1px var(--muted);
+  -webkit-text-fill-color: transparent;
+}
+
+/* ─── Eyebrow ─── */
+.eyebrow {
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.6875rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent-amber);
+  opacity: 0.5;
+}
+
+/* ─── Scroll progress bar ─── */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent-amber), var(--accent-red));
+  z-index: 100;
+  transition: width 0.1s linear;
+}
+
+/* ─── Nav link underline ─── */
+.nav-link { position: relative; }
+.nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--accent-amber);
+  transition: width 0.3s ease;
+}
+.nav-link:hover::after,
+.nav-link.active::after { width: 100%; }
+
+/* ─── Card hover lift ─── */
+.card-interactive {
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
+}
+.card-interactive:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(245, 158, 11, 0.1);
+}
+
+/* ─── Link underline slide-in ─── */
+.link-animated { position: relative; display: inline-block; }
+.link-animated::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: currentColor;
+  transition: width 0.3s ease;
+}
+.link-animated:hover::after { width: 100%; }
+
+/* ─── Section divider ─── */
+.section-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border) 20%, var(--accent-amber) 50%, var(--border) 80%, transparent);
+  opacity: 0.4;
+}
+
+/* ─── Infinite marquee ─── */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+@keyframes marquee-reverse {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+.animate-marquee { animation: marquee 30s linear infinite; }
+.animate-marquee-reverse { animation: marquee-reverse 35s linear infinite; }
+.animate-marquee:hover,
+.animate-marquee-reverse:hover { animation-play-state: paused; }
+
+/* ─── Safe area ─── */
+@supports (padding: env(safe-area-inset-top)) {
+  .safe-top { padding-top: env(safe-area-inset-top); }
 }
