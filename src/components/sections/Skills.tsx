@@ -5,7 +5,6 @@ import { motion } from "framer-motion";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import SectionWrapper from "@/components/layout/SectionWrapper";
-import { SKILL_CATEGORIES } from "@/lib/constants";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -239,42 +238,6 @@ export default function Skills() {
 
       {/* Thread convergence to Claude Code */}
       <ThreadCanvas />
-
-      {/* Category breakdown */}
-      <div className="mt-8 grid grid-cols-2 md:grid-cols-4 gap-6">
-        {SKILL_CATEGORIES.map((cat, i) => (
-          <motion.div
-            key={cat.name}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: i * 0.1 }}
-            className="space-y-3"
-          >
-            <h3 className="text-xs font-mono text-accent-amber/40 tracking-wider uppercase">
-              {cat.name}
-            </h3>
-            <ul className="space-y-1.5">
-              {cat.skills.map((s) => (
-                <li key={s.name} className="text-sm text-muted/60 flex items-center gap-2">
-                  <span
-                    className={`w-1.5 h-1.5 rounded-full shrink-0 ${
-                      s.level === "Primary"
-                        ? "bg-accent-amber/60"
-                        : s.level === "Proficient"
-                        ? "bg-accent-red/40"
-                        : "bg-muted/20"
-                    }`}
-                  />
-                  <span className={s.level === "Primary" ? "text-foreground/70" : ""}>
-                    {s.name}
-                  </span>
-                </li>
-              ))}
-            </ul>
-          </motion.div>
-        ))}
-      </div>
     </SectionWrapper>
   );
 }
