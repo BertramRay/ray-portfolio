@@ -66,7 +66,7 @@ export default function Experience() {
   }, [reducedMotion]);
 
   return (
-    <SectionWrapper id="experience" transition="clip">
+    <SectionWrapper id="experience" transition="approach">
       <div className="mb-12 md:mb-16">
         <span className="eyebrow">Career Path</span>
         <h2 className="text-3xl md:text-5xl font-bold mt-2 leading-tight">

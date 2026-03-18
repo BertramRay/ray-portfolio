@@ -19,23 +19,34 @@ const LINES = [
 ];
 
 function colorize(text: string) {
-  return text
+  // Extract strings first, replace with placeholders
+  const strings: string[] = [];
+  let result = text.replace(/("(?:[^"\\]|\\.)*")/g, (match) => {
+    strings.push(match);
+    return `__STR${strings.length - 1}__`;
+  });
+
+  // Colorize keywords and punctuation on the non-string parts
+  result = result
     .replace(
-      /(export const|return|await)/g,
+      /\b(export const|return|await)\b/g,
       '<span class="text-accent-amber/50">$1</span>'
     )
     .replace(
-      /("(?:[^"\\]|\\.)*")/g,
-      '<span class="text-accent-red/60">$1</span>'
+      /\b(ray|role|company|obsessions|motto)\b/g,
+      '<span class="text-foreground/50">$1</span>'
     )
     .replace(
       /(\{|\}|\[|\]|,|;)/g,
       '<span class="text-muted/25">$1</span>'
-    )
-    .replace(
-      /(ray|role|company|obsessions|motto)/g,
-      '<span class="text-foreground/50">$1</span>'
     );
+
+  // Restore strings with coloring
+  result = result.replace(/__STR(\d+)__/g, (_, i) => {
+    return `<span class="text-accent-red/60">${strings[Number(i)]}</span>`;
+  });
+
+  return result;
 }
 
 export default function TypingTerminal() {

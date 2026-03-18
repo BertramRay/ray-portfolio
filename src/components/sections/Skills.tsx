@@ -218,7 +218,7 @@ function ThreadCanvas() {
 
 export default function Skills() {
   return (
-    <SectionWrapper id="skills" transition="wipe">
+    <SectionWrapper id="skills" transition="rise">
       <div className="mb-12 md:mb-16">
         <span className="eyebrow">Technologies</span>
         <h2 className="text-3xl md:text-5xl font-bold mt-2 leading-tight">

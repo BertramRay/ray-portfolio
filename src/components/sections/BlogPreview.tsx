@@ -32,7 +32,7 @@ const PREVIEW_POSTS = [
 
 export default function BlogPreview() {
   return (
-    <SectionWrapper id="blog" transition="scale">
+    <SectionWrapper id="blog" transition="expand">
       <div className="flex items-end justify-between mb-12 md:mb-16">
         <div>
           <span className="eyebrow">Writing</span>

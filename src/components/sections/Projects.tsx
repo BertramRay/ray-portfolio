@@ -6,7 +6,7 @@ import { PROJECTS } from "@/lib/constants";
 
 export default function Projects() {
   return (
-    <SectionWrapper id="projects" transition="scale">
+    <SectionWrapper id="projects" transition="expand">
       <div className="mb-12 md:mb-16">
         <span className="eyebrow">Selected Work</span>
         <h2 className="text-3xl md:text-5xl font-bold mt-2 leading-tight">

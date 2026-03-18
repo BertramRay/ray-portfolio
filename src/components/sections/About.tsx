@@ -39,7 +39,7 @@ function AnimatedCounter({ target, suffix = "" }: { target: number; suffix?: str
 
 export default function About() {
   return (
-    <SectionWrapper id="about" transition="clip">
+    <SectionWrapper id="about" transition="approach">
       <div className="grid md:grid-cols-2 gap-8 md:gap-16 items-center">
         <motion.div
           initial={{ opacity: 0, x: -40 }}

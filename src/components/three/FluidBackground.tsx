@@ -16,7 +16,7 @@ const SECTION_MOODS: Record<string, number[]> = {
   skills:     [1.5, 1.6, 1.3, 0.2, 1.2, 1.2],   // fast, punchy
   experience: [0.5, 0.7, 0.9, 0.6, 0.5, 0.7],   // gentle, low mouse, soft
   blog:       [0.3, 0.5, 0.5, 0.8, 0.3, 0.6],   // quiet, minimal mouse, very soft
-  contact:    [0.7, 0.9, 1.4, 1.0, 1.3, 1.1],   // warm bloom, responsive
+  contact:    [0.7, 0.9, 1.0, 1.0, 1.0, 1.0],   // warm, moderate
 };
 const DEFAULT_MOOD = [0.6, 0.8, 0.8, 0.3, 1.0, 1.0];
 
